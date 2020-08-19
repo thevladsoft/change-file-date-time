@@ -11,14 +11,14 @@ Icon=chronometer
 [Desktop Action touch]
 Name=Change to right now (touch)
 Icon=chronometer
-Exec=touch %F
+Exec=touch "%F"
 
 [Desktop Action date]
 Name=Change Date
 Icon=chronometer
-Exec= FILE=%F;HORA=$(date -d"$(stat --printf=%y $FILE)" +%T);DIA=$(LC_ALL=C kdialog --calendar "Choose date."); [ -n "$DIA" ] && touch -d"$DIA $HORA" %F
+Exec= FILE="%F";HORA=$(date -d"$(stat --printf=%y "$FILE")" +%T);DIA=$(LC_ALL=C kdialog --calendar "Choose date."); [ -n "$DIA" ] && touch -d"$DIA $HORA" "%F"
 
 [Desktop Action hour]
 Name=Change Time
 Icon=chronometer
-Exec=  export LC_ALL=C;FILE=%F;export DIA=$(date -d"$(stat --printf=%y $FILE)" +'%x');bash -c 'HORA="never";while  [[ -n $HORA ]] && [[  ! $HORA =~ ^[0-2]?{1}[0-9]:[0-9]?{1}[0-9]$ ]]  && [[ ! $HORA =~ ^[0-2]?{1}[0-9]:[0-9]?{1}[0-9]:[0-9]?{1}[0-9]$  ]]  ; do HORA="$(kdialog --inputbox "input time (secs. are optional)" "$(date +%T)")"; [[ $(date -d"$HORA" 1>/dev/null 2>&1) ]]  && HORA="never";done;[[ -n $HORA ]] && touch -d"$DIA $HORA" %F'
+Exec=  export LC_ALL=C;FILE="%F";export DIA=$(date -d"$(stat --printf=%y "$FILE")" +'%x');bash -c 'HORA="never";while  [[ -n $HORA ]] && [[  ! $HORA =~ ^[0-2]?{1}[0-9]:[0-9]?{1}[0-9]$ ]]  && [[ ! $HORA =~ ^[0-2]?{1}[0-9]:[0-9]?{1}[0-9]:[0-9]?{1}[0-9]$  ]]  ; do HORA="$(kdialog --inputbox "input time (secs. are optional)" "$(date +%T)")"; [[ $(date -d"$HORA" 1>/dev/null 2>&1) ]]  && HORA="never";done;[[ -n $HORA ]] && touch -d"$DIA $HORA" "%F"'
