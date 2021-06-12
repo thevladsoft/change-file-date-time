@@ -4,21 +4,25 @@ ServiceTypes=KonqPopupMenu/Plugin
 MimeType=all/all;
 Actions=touch;date;hour;
 X-KDE-Submenu=Change File Date/Hour
+X-KDE-Submenu[nl]=Datum/Tijd aanpassen
 X-KDE-StartupNotify=false
 X-KDE-Priority=TopLevel
 Icon=chronometer
 
 [Desktop Action touch]
 Name=Change to right now (touch)
+Name[nl]=Huidig tijdstip toekennen
 Icon=chronometer
 Exec=touch %F
 
 [Desktop Action date]
 Name=Change Date
+Name[nl]=Datum wijzigen
 Icon=chronometer
 Exec= DIA=$(LC_ALL=C kdialog --calendar "Choose date."); for FILE in %F; do HORA=$(date -d"$(stat --printf=%y "$FILE")" +%T); [ -n "$DIA" ] && touch -d"$DIA $HORA" "$FILE";done
 
 [Desktop Action hour]
 Name=Change Time
+Name[nl]=Tijdstip wijzigen
 Icon=chronometer
 Exec=  export LC_ALL=C;HORA= ; HORA=$(bash -c 'HORA="never";while  [[ -n $HORA ]] && [[  ! $HORA =~ ^[0-2]?{1}[0-9]:[0-9]?{1}[0-9]$ ]]  && [[ ! $HORA =~ ^[0-2]?{1}[0-9]:[0-9]?{1}[0-9]:[0-9]?{1}[0-9]$  ]]  ; do export HORA="$(kdialog --inputbox "input time (secs. are optional)" "$(date +%T)")"; [[ $(date -d"$HORA" 1>/dev/null 2>&1) ]]  && HORA="never";done;echo $HORA');[ -n "$HORA" ] && (for FILE in %F; do DIA=$(date -d"$(stat --printf=%y "$FILE")" +'%x');  touch -d"$DIA $HORA" "$FILE";done)
