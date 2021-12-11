@@ -2,26 +2,26 @@
 Type=Service
 ServiceTypes=KonqPopupMenu/Plugin
 MimeType=all/all;
-Actions=touch;date;hour;
+Actions=1touch;2date;3hour;
 X-KDE-Submenu=Change File Date/Hour
 X-KDE-Submenu[nl]=Datum/Tijd aanpassen
 X-KDE-StartupNotify=false
 X-KDE-Priority=TopLevel
 Icon=chronometer
 
-[Desktop Action touch]
+[Desktop Action 1touch]
 Name=Change to right now (touch)
 Name[nl]=Huidig tijdstip toekennen
 Icon=chronometer
 Exec=touch %F
 
-[Desktop Action date]
+[Desktop Action 2date]
 Name=Change Date
 Name[nl]=Datum wijzigen
 Icon=chronometer
 Exec= DIA=$(LC_ALL=C kdialog --calendar "Choose date."); for FILE in %F; do HORA=$(date -d"$(stat --printf=%y "$FILE")" +%T); [ -n "$DIA" ] && touch -d"$DIA $HORA" "$FILE";done
 
-[Desktop Action hour]
+[Desktop Action 3hour]
 Name=Change Time
 Name[nl]=Tijdstip wijzigen
 Icon=chronometer
