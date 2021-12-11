@@ -7,7 +7,7 @@ Priority: optional
 Standards-Version: 3.9.2
 
 Package: change-file-date-time
-Version: 1.2
+Version: 1.3
 Maintainer: thevladsoft
 # Pre-Depends: <comma-separated list of packages>
 Depends: kdialog
